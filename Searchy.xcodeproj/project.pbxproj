@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B13F4E72A6975D60006F3F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F4E62A6975D60006F3F0 /* AppDelegate.swift */; };
 		1B13F4E92A6975D60006F3F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F4E82A6975D60006F3F0 /* SceneDelegate.swift */; };
-		1B13F4EB2A6975D60006F3F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F4EA2A6975D60006F3F0 /* ViewController.swift */; };
+		1B13F4EB2A6975D60006F3F0 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F4EA2A6975D60006F3F0 /* SplashViewController.swift */; };
 		1B13F4EE2A6975D60006F3F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B13F4EC2A6975D60006F3F0 /* Main.storyboard */; };
 		1B13F4F02A6975D70006F3F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B13F4EF2A6975D70006F3F0 /* Assets.xcassets */; };
 		1B13F4F32A6975D70006F3F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B13F4F12A6975D70006F3F0 /* LaunchScreen.storyboard */; };
@@ -22,6 +22,8 @@
 		1B13F51E2A6976C00006F3F0 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 1B13F51D2A6976C00006F3F0 /* FirebaseRemoteConfig */; };
 		1B13F5212A6977A60006F3F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B13F5202A6977A60006F3F0 /* GoogleService-Info.plist */; };
 		1B13F5272A697AFD0006F3F0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1B13F5262A697AFD0006F3F0 /* .swiftlint.yml */; };
+		1B13F52C2A697D570006F3F0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1B13F52B2A697D570006F3F0 /* Alamofire */; };
+		1B13F52E2A697DA70006F3F0 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F52D2A697DA70006F3F0 /* NetworkReachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,7 @@
 		1B13F4E32A6975D60006F3F0 /* Searchy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Searchy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B13F4E62A6975D60006F3F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B13F4E82A6975D60006F3F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1B13F4EA2A6975D60006F3F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1B13F4EA2A6975D60006F3F0 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		1B13F4ED2A6975D60006F3F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B13F4EF2A6975D70006F3F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B13F4F22A6975D70006F3F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 		1B13F5092A6975D70006F3F0 /* SearchyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1B13F5202A6977A60006F3F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B13F5262A697AFD0006F3F0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		1B13F52D2A697DA70006F3F0 /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B13F52C2A697D570006F3F0 /* Alamofire in Frameworks */,
 				1B13F5182A6976C00006F3F0 /* FirebaseAnalytics in Frameworks */,
 				1B13F51A2A6976C00006F3F0 /* FirebaseCrashlytics in Frameworks */,
 				1B13F51C2A6976C00006F3F0 /* FirebasePerformance in Frameworks */,
@@ -140,6 +144,7 @@
 			children = (
 				1B13F4E62A6975D60006F3F0 /* AppDelegate.swift */,
 				1B13F4E82A6975D60006F3F0 /* SceneDelegate.swift */,
+				1B13F52D2A697DA70006F3F0 /* NetworkReachability.swift */,
 				1B13F4EC2A6975D60006F3F0 /* Main.storyboard */,
 				1B13F4F12A6975D70006F3F0 /* LaunchScreen.storyboard */,
 				1B13F4EF2A6975D70006F3F0 /* Assets.xcassets */,
@@ -168,7 +173,7 @@
 		1B13F5242A69781E0006F3F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1B13F4EA2A6975D60006F3F0 /* ViewController.swift */,
+				1B13F4EA2A6975D60006F3F0 /* SplashViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 				1B13F5192A6976C00006F3F0 /* FirebaseCrashlytics */,
 				1B13F51B2A6976C00006F3F0 /* FirebasePerformance */,
 				1B13F51D2A6976C00006F3F0 /* FirebaseRemoteConfig */,
+				1B13F52B2A697D570006F3F0 /* Alamofire */,
 			);
 			productName = Searchy;
 			productReference = 1B13F4E32A6975D60006F3F0 /* Searchy.app */;
@@ -271,6 +277,7 @@
 			packageReferences = (
 				1B13F5162A6976C00006F3F0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				1B13F5252A697ADA0006F3F0 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				1B13F52A2A697D570006F3F0 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 1B13F4E42A6975D60006F3F0 /* Products */;
 			projectDirPath = "";
@@ -317,9 +324,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B13F4EB2A6975D60006F3F0 /* ViewController.swift in Sources */,
+				1B13F4EB2A6975D60006F3F0 /* SplashViewController.swift in Sources */,
 				1B13F4E72A6975D60006F3F0 /* AppDelegate.swift in Sources */,
 				1B13F4E92A6975D60006F3F0 /* SceneDelegate.swift in Sources */,
+				1B13F52E2A697DA70006F3F0 /* NetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +691,14 @@
 				minimumVersion = 0.52.4;
 			};
 		};
+		1B13F52A2A697D570006F3F0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -710,6 +726,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B13F5252A697ADA0006F3F0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
+		};
+		1B13F52B2A697D570006F3F0 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B13F52A2A697D570006F3F0 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
