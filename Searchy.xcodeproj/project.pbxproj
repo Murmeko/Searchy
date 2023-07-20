@@ -21,6 +21,7 @@
 		1B13F51C2A6976C00006F3F0 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 1B13F51B2A6976C00006F3F0 /* FirebasePerformance */; };
 		1B13F51E2A6976C00006F3F0 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 1B13F51D2A6976C00006F3F0 /* FirebaseRemoteConfig */; };
 		1B13F5212A6977A60006F3F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B13F5202A6977A60006F3F0 /* GoogleService-Info.plist */; };
+		1B13F5272A697AFD0006F3F0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1B13F5262A697AFD0006F3F0 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		1B13F5072A6975D70006F3F0 /* SearchyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchyUITests.swift; sourceTree = "<group>"; };
 		1B13F5092A6975D70006F3F0 /* SearchyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1B13F5202A6977A60006F3F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1B13F5262A697AFD0006F3F0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		1B13F4DA2A6975D60006F3F0 = {
 			isa = PBXGroup;
 			children = (
+				1B13F5262A697AFD0006F3F0 /* .swiftlint.yml */,
 				1B13F4E52A6975D60006F3F0 /* Searchy */,
 				1B13F4FC2A6975D70006F3F0 /* SearchyTests */,
 				1B13F5062A6975D70006F3F0 /* SearchyUITests */,
@@ -184,6 +187,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1B13F5292A697B6F0006F3F0 /* PBXTargetDependency */,
 			);
 			name = Searchy;
 			packageProductDependencies = (
@@ -266,6 +270,7 @@
 			mainGroup = 1B13F4DA2A6975D60006F3F0;
 			packageReferences = (
 				1B13F5162A6976C00006F3F0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1B13F5252A697ADA0006F3F0 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 1B13F4E42A6975D60006F3F0 /* Products */;
 			projectDirPath = "";
@@ -283,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B13F5272A697AFD0006F3F0 /* .swiftlint.yml in Resources */,
 				1B13F4F32A6975D70006F3F0 /* LaunchScreen.storyboard in Resources */,
 				1B13F5212A6977A60006F3F0 /* GoogleService-Info.plist in Resources */,
 				1B13F4F02A6975D70006F3F0 /* Assets.xcassets in Resources */,
@@ -346,6 +352,10 @@
 			isa = PBXTargetDependency;
 			target = 1B13F4E22A6975D60006F3F0 /* Searchy */;
 			targetProxy = 1B13F5042A6975D70006F3F0 /* PBXContainerItemProxy */;
+		};
+		1B13F5292A697B6F0006F3F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1B13F5282A697B6F0006F3F0 /* SwiftLintPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -665,6 +675,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		1B13F5252A697ADA0006F3F0 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.52.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -687,6 +705,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B13F5162A6976C00006F3F0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
+		};
+		1B13F5282A697B6F0006F3F0 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B13F5252A697ADA0006F3F0 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
