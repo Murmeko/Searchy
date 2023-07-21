@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>567297502787-tt9qrfbpp1hpbv755e5hnkfp5i2hrk24.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.567297502787-tt9qrfbpp1hpbv755e5hnkfp5i2hrk24</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDEQ7hCyNFsL-ifdymeo8qhDqfAxeTZrQo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>567297502787</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Murmeko.Searchy</string>
+	<key>PROJECT_ID</key>
+	<string>searchy-31f2f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>searchy-31f2f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:567297502787:ios:55c5efa6edbef234ee2ef6</string>
+</dict>
+</plist>
