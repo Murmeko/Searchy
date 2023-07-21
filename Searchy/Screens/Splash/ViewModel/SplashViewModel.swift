@@ -15,7 +15,9 @@ protocol SplashViewModelProtocol: BaseViewModelProtocol {
   var developerLabelText: String? { get }
 
   var updateView: (() -> Void)? { get set }
-  var updateDeveloperLabel: (() -> Void)? { get set }
+  var updateDeveloperLabel: ((_ completion: @escaping (() -> Void)) -> Void)? { get set }
+
+  var hideGeneralBrandView: ((_ completion: @escaping (() -> Void)) -> Void)? { get set }
 }
 
 class SplashViewModel: BaseViewModel, SplashViewModelProtocol {
@@ -25,7 +27,9 @@ class SplashViewModel: BaseViewModel, SplashViewModelProtocol {
   var developerLabelText: String?
 
   var updateView: (() -> Void)?
-  var updateDeveloperLabel: (() -> Void)?
+  var updateDeveloperLabel: ((_ completion: @escaping (() -> Void)) -> Void)?
+
+  var hideGeneralBrandView: ((_ completion: @escaping (() -> Void)) -> Void)?
 
   private var remoteConfig: RemoteConfig!
 
@@ -40,7 +44,7 @@ class SplashViewModel: BaseViewModel, SplashViewModelProtocol {
       developerLabelText = "Yiğit Erdinç"
     } else {
       backgroundColor = .red
-      developerLabelText = "No internet connection :("
+      developerLabelText = "No internet connection 😔"
     }
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -83,7 +87,12 @@ extension SplashViewModel {
 
   private func handleRemoteConfigSuccess() {
     developerLabelText = remoteConfig[Constants.Splash.openingTitle].stringValue
-    updateDeveloperLabel?()
+    updateDeveloperLabel? { [weak self] in
+      guard let self = self else { return }
+      self.hideGeneralBrandView? {
+        self.router.presentSearchViewController()
+      }
+    }
   }
 
   private func handleRemoteConfigFailure(_ error: Error? = nil) {

@@ -5,7 +5,7 @@
 //  Created by Yiğit Erdinç on 21.07.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol SplashRouterProtocol: BaseRouterProtocol {
   func presentSearchViewController()
@@ -14,7 +14,7 @@ protocol SplashRouterProtocol: BaseRouterProtocol {
 class SplashRouter: BaseRouter, SplashRouterProtocol {
   func presentSearchViewController() {
     let searchViewController = SearchViewController()
-    searchViewController.modalPresentationStyle = .overFullScreen
-    presentViewController?(searchViewController)
+    UIApplication.shared.firstWindow()?.rootViewController = searchViewController
+    UIApplication.shared.firstWindow()?.makeKeyAndVisible()
   }
 }

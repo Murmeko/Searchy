@@ -60,6 +60,7 @@ extension SplashViewController {
     viewModel.router.presentViewController = presentViewController()
     viewModel.updateView = updateView()
     viewModel.updateDeveloperLabel = updateDeveloperLabel()
+    viewModel.hideGeneralBrandView = generalBrandView.animateDisappear()
   }
 
   private func updateView() -> () -> Void {
@@ -74,8 +75,8 @@ extension SplashViewController {
     }
   }
 
-  private func updateDeveloperLabel() -> () -> Void {
-    return { [weak self] in
+  private func updateDeveloperLabel() -> (_ completion: @escaping (() -> Void)) -> Void {
+    return { [weak self] completion in
       guard let self = self else { return }
       UIView.animate(withDuration: 0.75, animations: {
         self.developerLabel.alpha = 0.0
@@ -83,6 +84,8 @@ extension SplashViewController {
         self.developerLabel.text = self.viewModel.developerLabelText
         UIView.animate(withDuration: 0.55, animations: {
           self.developerLabel.alpha = 1.0
+        }, completion: { _ in
+          completion()
         })
       })
     }

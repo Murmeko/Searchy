@@ -24,6 +24,7 @@ class SearchViewController: UIViewController, SearchViewControllerProtocol {
 // MARK: ViewController Setup
 extension SearchViewController {
   internal func setupView() {
+    view.backgroundColor = .black
   }
 }
 

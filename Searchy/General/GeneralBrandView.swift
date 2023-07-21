@@ -15,6 +15,9 @@ class GeneralBrandView: UIStackView {
     return imageView
   }()
 
+  private var searchyImageViewWidthConstraint: NSLayoutConstraint?
+  private var searchyImageViewHeightConstraint: NSLayoutConstraint?
+
   lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.text = Constants.brandName
@@ -22,6 +25,8 @@ class GeneralBrandView: UIStackView {
     label.textColor = .systemIndigo
     return label
   }()
+
+  private var titleLabelWidthConstraint: NSLayoutConstraint?
 
   init() {
     super.init(frame: .zero)
@@ -46,12 +51,68 @@ extension GeneralBrandView {
   private func addSearchyImageView() {
     addArrangedSubview(searchyImageView)
     searchyImageView.translatesAutoresizingMaskIntoConstraints = false
-    searchyImageView.widthAnchor.constraint(equalToConstant: 46).isActive = true
-    searchyImageView.heightAnchor.constraint(equalToConstant: 46).isActive = true
+    searchyImageViewWidthConstraint = searchyImageView.widthAnchor.constraint(equalToConstant: 46)
+    searchyImageViewHeightConstraint = searchyImageView.heightAnchor.constraint(equalToConstant: 46)
+    searchyImageViewWidthConstraint?.isActive = true
+    searchyImageViewHeightConstraint?.isActive = true
   }
 
   private func addTitleLabel() {
     addArrangedSubview(titleLabel)
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
+  }
+}
+
+extension GeneralBrandView {
+  func animateAppear() -> () -> Void {
+    return { [weak self] in
+      guard let self = self else { return }
+      UIView.animate(withDuration: 0.25) {
+        self.searchyImageView.isHidden = false
+        self.titleLabel.isHidden = false
+        self.searchyImageView.alpha = 1.0
+        self.titleLabel.alpha = 1.0
+      }
+    }
+  }
+
+  func animateDisappear() -> (_ completion: @escaping (() -> Void)) -> Void {
+    return { [weak self] completion in
+      guard let self = self else { return }
+      self.hideTitleLabel {
+        self.enlargeSearchyImageView {
+          completion()
+        }
+      }
+    }
+  }
+
+  private func hideTitleLabel(completion: @escaping (() -> Void)) {
+    titleLabelWidthConstraint = titleLabel.widthAnchor.constraint(equalToConstant: titleLabel.frame.width)
+    titleLabelWidthConstraint?.isActive = true
+
+    UIView.animate(withDuration: 0.5, animations: {
+      self.titleLabelWidthConstraint?.constant = 0
+      self.layoutIfNeeded()
+    }, completion: { _ in
+      self.titleLabelWidthConstraint?.isActive = false
+      self.titleLabel.alpha = 0.0
+      self.titleLabel.isHidden = true
+      completion()
+    })
+  }
+
+  private func enlargeSearchyImageView(completion: @escaping (() -> Void)) {
+    UIView.animate(withDuration: 0.25, animations: {
+      self.searchyImageViewWidthConstraint?.constant = 750
+      self.searchyImageViewHeightConstraint?.constant = 750
+      self.searchyImageView.alpha = 0.0
+      self.layoutIfNeeded()
+    }, completion: { _ in
+      self.searchyImageViewWidthConstraint?.constant = 46
+      self.searchyImageViewHeightConstraint?.constant = 46
+      self.searchyImageView.isHidden = true
+      completion()
+    })
   }
 }

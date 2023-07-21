@@ -38,6 +38,7 @@
 		1B13F5542A6A09F60006F3F0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5532A6A09F60006F3F0 /* DetailViewController.swift */; };
 		1B13F5562A6A09FF0006F3F0 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5552A6A09FF0006F3F0 /* DetailViewModel.swift */; };
 		1B13F5582A6A0A060006F3F0 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5572A6A0A060006F3F0 /* DetailRouter.swift */; };
+		1B13F55A2A6AEAEE0006F3F0 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5592A6AEAEE0006F3F0 /* UIApplication+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		1B13F5532A6A09F60006F3F0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1B13F5552A6A09FF0006F3F0 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		1B13F5572A6A0A060006F3F0 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
+		1B13F5592A6AEAEE0006F3F0 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 				1B13F53F2A69EECE0006F3F0 /* BaseViewModel.swift */,
 				1B13F5422A69FBCB0006F3F0 /* GeneralBrandView.swift */,
 				1B13F52D2A697DA70006F3F0 /* NetworkReachability.swift */,
+				1B13F5592A6AEAEE0006F3F0 /* UIApplication+Extension.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				1B13F5482A6A06C10006F3F0 /* SplashRouter.swift in Sources */,
 				1B13F5342A6982480006F3F0 /* Constants.swift in Sources */,
 				1B13F4EB2A6975D60006F3F0 /* SplashViewController.swift in Sources */,
+				1B13F55A2A6AEAEE0006F3F0 /* UIApplication+Extension.swift in Sources */,
 				1B13F53B2A698BFD0006F3F0 /* SplashViewModel.swift in Sources */,
 				1B13F54B2A6A080A0006F3F0 /* SearchViewModel.swift in Sources */,
 				1B13F4E72A6975D60006F3F0 /* AppDelegate.swift in Sources */,
