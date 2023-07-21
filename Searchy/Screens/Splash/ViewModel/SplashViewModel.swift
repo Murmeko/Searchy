@@ -20,7 +20,7 @@ protocol SplashViewModelProtocol: BaseViewModelProtocol {
   var hideGeneralBrandView: ((_ completion: @escaping (() -> Void)) -> Void)? { get set }
 }
 
-class SplashViewModel: BaseViewModel, SplashViewModelProtocol {
+class SplashViewModel: SplashViewModelProtocol {
   var router: SplashRouterProtocol = SplashRouter()
 
   var backgroundColor: UIColor?
@@ -33,12 +33,11 @@ class SplashViewModel: BaseViewModel, SplashViewModelProtocol {
 
   private var remoteConfig: RemoteConfig!
 
-  override init() {
-    super.init()
+  init() {
     setupRemoteConfig()
   }
 
-  override func viewIsReady() {
+  func viewIsReady() {
     if NetworkReachability.shared.isReachable {
       backgroundColor = .systemBackground
       developerLabelText = "Yiğit Erdinç"

@@ -29,7 +29,7 @@
 		1B13F5382A698A1F0006F3F0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5372A698A1F0006F3F0 /* SearchViewController.swift */; };
 		1B13F53B2A698BFD0006F3F0 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F53A2A698BFD0006F3F0 /* SplashViewModel.swift */; };
 		1B13F53E2A69EE750006F3F0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F53D2A69EE750006F3F0 /* BaseViewController.swift */; };
-		1B13F5402A69EECE0006F3F0 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F53F2A69EECE0006F3F0 /* BaseViewModel.swift */; };
+		1B13F5402A69EECE0006F3F0 /* BaseViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F53F2A69EECE0006F3F0 /* BaseViewModelProtocol.swift */; };
 		1B13F5432A69FBCB0006F3F0 /* GeneralBrandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5422A69FBCB0006F3F0 /* GeneralBrandView.swift */; };
 		1B13F5452A6A03320006F3F0 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5442A6A03320006F3F0 /* BaseRouter.swift */; };
 		1B13F5482A6A06C10006F3F0 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5472A6A06C10006F3F0 /* SplashRouter.swift */; };
@@ -39,6 +39,10 @@
 		1B13F5562A6A09FF0006F3F0 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5552A6A09FF0006F3F0 /* DetailViewModel.swift */; };
 		1B13F5582A6A0A060006F3F0 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5572A6A0A060006F3F0 /* DetailRouter.swift */; };
 		1B13F55A2A6AEAEE0006F3F0 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5592A6AEAEE0006F3F0 /* UIApplication+Extension.swift */; };
+		1B13F55D2A6B33D10006F3F0 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F55C2A6B33D10006F3F0 /* SearchModel.swift */; };
+		1B13F55F2A6B35AE0006F3F0 /* BaseCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F55E2A6B35AE0006F3F0 /* BaseCellViewModelProtocol.swift */; };
+		1B13F5612A6B36C50006F3F0 /* BaseCollectionViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5602A6B36C50006F3F0 /* BaseCollectionViewCellProtocol.swift */; };
+		1B13F5642A6B3B490006F3F0 /* SearchNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5632A6B3B490006F3F0 /* SearchNetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +84,7 @@
 		1B13F5372A698A1F0006F3F0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1B13F53A2A698BFD0006F3F0 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		1B13F53D2A69EE750006F3F0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		1B13F53F2A69EECE0006F3F0 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		1B13F53F2A69EECE0006F3F0 /* BaseViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelProtocol.swift; sourceTree = "<group>"; };
 		1B13F5422A69FBCB0006F3F0 /* GeneralBrandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralBrandView.swift; sourceTree = "<group>"; };
 		1B13F5442A6A03320006F3F0 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		1B13F5472A6A06C10006F3F0 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
@@ -90,6 +94,10 @@
 		1B13F5552A6A09FF0006F3F0 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		1B13F5572A6A0A060006F3F0 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		1B13F5592A6AEAEE0006F3F0 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		1B13F55C2A6B33D10006F3F0 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		1B13F55E2A6B35AE0006F3F0 /* BaseCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellViewModelProtocol.swift; sourceTree = "<group>"; };
+		1B13F5602A6B36C50006F3F0 /* BaseCollectionViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCellProtocol.swift; sourceTree = "<group>"; };
+		1B13F5632A6B3B490006F3F0 /* SearchNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +224,8 @@
 		1B13F5352A698A120006F3F0 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				1B13F5622A6B3B3A0006F3F0 /* Networking */,
+				1B13F55B2A6B33C60006F3F0 /* Model */,
 				1B13F5362A698A160006F3F0 /* View */,
 				1B13F5492A6A08000006F3F0 /* ViewModel */,
 				1B13F54C2A6A084B0006F3F0 /* Router */,
@@ -244,11 +254,10 @@
 			children = (
 				1B13F5332A6982480006F3F0 /* Constants.swift */,
 				1B13F5442A6A03320006F3F0 /* BaseRouter.swift */,
-				1B13F53D2A69EE750006F3F0 /* BaseViewController.swift */,
-				1B13F53F2A69EECE0006F3F0 /* BaseViewModel.swift */,
-				1B13F5422A69FBCB0006F3F0 /* GeneralBrandView.swift */,
 				1B13F52D2A697DA70006F3F0 /* NetworkReachability.swift */,
-				1B13F5592A6AEAEE0006F3F0 /* UIApplication+Extension.swift */,
+				1B13F5672A6B475A0006F3F0 /* Extensions */,
+				1B13F5652A6B472F0006F3F0 /* View */,
+				1B13F5662A6B47470006F3F0 /* ViewModel */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -309,6 +318,49 @@
 				1B13F5532A6A09F60006F3F0 /* DetailViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1B13F55B2A6B33C60006F3F0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B13F55C2A6B33D10006F3F0 /* SearchModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B13F5622A6B3B3A0006F3F0 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1B13F5632A6B3B490006F3F0 /* SearchNetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		1B13F5652A6B472F0006F3F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B13F53D2A69EE750006F3F0 /* BaseViewController.swift */,
+				1B13F5602A6B36C50006F3F0 /* BaseCollectionViewCellProtocol.swift */,
+				1B13F5422A69FBCB0006F3F0 /* GeneralBrandView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1B13F5662A6B47470006F3F0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B13F55E2A6B35AE0006F3F0 /* BaseCellViewModelProtocol.swift */,
+				1B13F53F2A69EECE0006F3F0 /* BaseViewModelProtocol.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1B13F5672A6B475A0006F3F0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1B13F5592A6AEAEE0006F3F0 /* UIApplication+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -462,11 +514,14 @@
 				1B13F5482A6A06C10006F3F0 /* SplashRouter.swift in Sources */,
 				1B13F5342A6982480006F3F0 /* Constants.swift in Sources */,
 				1B13F4EB2A6975D60006F3F0 /* SplashViewController.swift in Sources */,
+				1B13F5642A6B3B490006F3F0 /* SearchNetworkManager.swift in Sources */,
 				1B13F55A2A6AEAEE0006F3F0 /* UIApplication+Extension.swift in Sources */,
 				1B13F53B2A698BFD0006F3F0 /* SplashViewModel.swift in Sources */,
 				1B13F54B2A6A080A0006F3F0 /* SearchViewModel.swift in Sources */,
 				1B13F4E72A6975D60006F3F0 /* AppDelegate.swift in Sources */,
-				1B13F5402A69EECE0006F3F0 /* BaseViewModel.swift in Sources */,
+				1B13F5612A6B36C50006F3F0 /* BaseCollectionViewCellProtocol.swift in Sources */,
+				1B13F5402A69EECE0006F3F0 /* BaseViewModelProtocol.swift in Sources */,
+				1B13F55F2A6B35AE0006F3F0 /* BaseCellViewModelProtocol.swift in Sources */,
 				1B13F53E2A69EE750006F3F0 /* BaseViewController.swift in Sources */,
 				1B13F5452A6A03320006F3F0 /* BaseRouter.swift in Sources */,
 				1B13F54E2A6A08560006F3F0 /* SearchRouter.swift in Sources */,
@@ -474,6 +529,7 @@
 				1B13F5542A6A09F60006F3F0 /* DetailViewController.swift in Sources */,
 				1B13F52E2A697DA70006F3F0 /* NetworkReachability.swift in Sources */,
 				1B13F5582A6A0A060006F3F0 /* DetailRouter.swift in Sources */,
+				1B13F55D2A6B33D10006F3F0 /* SearchModel.swift in Sources */,
 				1B13F5432A69FBCB0006F3F0 /* GeneralBrandView.swift in Sources */,
 				1B13F5562A6A09FF0006F3F0 /* DetailViewModel.swift in Sources */,
 			);
