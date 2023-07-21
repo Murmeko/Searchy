@@ -26,9 +26,10 @@ protocol SearchViewModelProtocol: BaseViewModelProtocol, CollectionViewModelable
 }
 
 class SearchViewModel: SearchViewModelProtocol {
-  private var cellViewModels: [[BaseCellViewModelProtocol]] = []
-
   var router: SearchRouterProtocol = SearchRouter()
+
+  private var cellViewModels: [[BaseCellViewModelProtocol]] = []
+  private var networkManager = SearchNetworkManager()
 
   var reloadCollectionView: (() -> Void)?
 
@@ -48,6 +49,7 @@ class SearchViewModel: SearchViewModelProtocol {
                        GenericSearchResultCellViewModel(),
                        GenericSearchResultCellViewModel(),
                        GenericSearchResultCellViewModel()]]
+
     reloadCollectionView?()
   }
 }

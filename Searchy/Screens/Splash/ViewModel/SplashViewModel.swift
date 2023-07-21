@@ -96,9 +96,10 @@ extension SplashViewModel {
 
   private func handleRemoteConfigFailure(_ error: Error? = nil) {
     if let error {
-
+      print("Error occured while fetching Firebase Remote Config")
+      print(error)
     } else {
-
+      print("Unknown error occured while fetching Firebase Remote Config.")
     }
   }
 }
