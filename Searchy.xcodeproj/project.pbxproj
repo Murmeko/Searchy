@@ -48,6 +48,7 @@
 		1B13F5712A6C16640006F3F0 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B13F56F2A6C16640006F3F0 /* SearchResultCell.xib */; };
 		1B13F5742A6C21550006F3F0 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 1B13F5732A6C21550006F3F0 /* Nuke */; };
 		1B13F5772A6C22D70006F3F0 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 1B13F5762A6C22D70006F3F0 /* NukeExtensions */; };
+		1B16E24B2A6D8CEA002B1A3D /* notification.apns in Resources */ = {isa = PBXBuildFile; fileRef = 1B16E24A2A6D8CEA002B1A3D /* notification.apns */; };
 		1BEEAB152A6C5CAD00ED2E39 /* BrandedTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEAB142A6C5CAD00ED2E39 /* BrandedTitleView.swift */; };
 		1BEEAB182A6C63AD00ED2E39 /* SearchEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEAB162A6C63AC00ED2E39 /* SearchEmptyCell.swift */; };
 		1BEEAB192A6C63AD00ED2E39 /* SearchEmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEEAB172A6C63AC00ED2E39 /* SearchEmptyCell.xib */; };
@@ -116,6 +117,7 @@
 		1B13F5692A6C15030006F3F0 /* SearchResultCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCellViewModel.swift; sourceTree = "<group>"; };
 		1B13F56E2A6C16640006F3F0 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		1B13F56F2A6C16640006F3F0 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		1B16E24A2A6D8CEA002B1A3D /* notification.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = notification.apns; sourceTree = "<group>"; };
 		1BEEAB142A6C5CAD00ED2E39 /* BrandedTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandedTitleView.swift; sourceTree = "<group>"; };
 		1BEEAB162A6C63AC00ED2E39 /* SearchEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyCell.swift; sourceTree = "<group>"; };
 		1BEEAB172A6C63AC00ED2E39 /* SearchEmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchEmptyCell.xib; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				1B13F4F42A6975D70006F3F0 /* Info.plist */,
 				1B13F5202A6977A60006F3F0 /* GoogleService-Info.plist */,
 				1B13F5312A6981890006F3F0 /* GoogleService-RemoteConfigDefaults.plist */,
+				1B16E24A2A6D8CEA002B1A3D /* notification.apns */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				1B13F5272A697AFD0006F3F0 /* .swiftlint.yml in Resources */,
 				1B13F4F32A6975D70006F3F0 /* LaunchScreen.storyboard in Resources */,
 				1B13F5212A6977A60006F3F0 /* GoogleService-Info.plist in Resources */,
+				1B16E24B2A6D8CEA002B1A3D /* notification.apns in Resources */,
 				1BEEAB192A6C63AD00ED2E39 /* SearchEmptyCell.xib in Resources */,
 				1BEEAB1F2A6C967E00ED2E39 /* SearchLoadingCell.xib in Resources */,
 				1B13F5322A6981890006F3F0 /* GoogleService-RemoteConfigDefaults.plist in Resources */,
