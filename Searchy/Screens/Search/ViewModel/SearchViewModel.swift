@@ -10,7 +10,6 @@ import UIKit
 protocol CollectionViewCellTypable {
   var identifier: String { get }
   var cellClass: BaseCollectionViewCellProtocol.Type { get }
-  var cellSize: CGSize { get }
 }
 
 protocol CollectionViewModelable {
@@ -19,10 +18,14 @@ protocol CollectionViewModelable {
   func numberOfSections() -> Int
   func numberOfItemsInSection(_ section: Int) -> Int
   func cellViewModelForItemAt(_ indexPath: IndexPath) -> BaseCellViewModelProtocol
+  func sizeForItemAt(_ indexPath: IndexPath) -> CGSize
 }
 
 protocol SearchViewModelProtocol: BaseViewModelProtocol, CollectionViewModelable {
   var router: SearchRouterProtocol { get set }
+
+  func fetchResults(for searchText: String?)
+  func fetchNextPage()
 }
 
 class SearchViewModel: SearchViewModelProtocol {
@@ -31,29 +34,95 @@ class SearchViewModel: SearchViewModelProtocol {
   private var cellViewModels: [[BaseCellViewModelProtocol]] = []
   private var networkManager = SearchNetworkManager()
 
+  private var pageNumber: Int = 1
+  private var totalResults: Int?
+
+  private var isFetching: Bool = false
+  private var fetchedInitialResults: Bool = false
+
+  private var searchedText: String?
+
   var reloadCollectionView: (() -> Void)?
 
   func viewIsReady() {
-    cellViewModels = [[GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel()],
-                      [GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel()],
-                      [GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel(),
-                       GenericSearchResultCellViewModel()]]
-
+    cellViewModels = [[SearchEmptyCellViewModel(text: "Enter a text to search")]]
     reloadCollectionView?()
   }
 }
 
+// MARK: Networking
+extension SearchViewModel {
+  func fetchResults(for searchText: String?) {
+    guard !isFetching, let searchText = searchText else { return }
+    fetchedInitialResults = false
+    isFetching = true
+    searchedText = nil
+    pageNumber = 0
+
+    cellViewModels = [[SearchLoadingCellViewModel()]]
+    reloadCollectionView?()
+
+    networkManager.getSearchResults(for: searchText) { [weak self] searchModel in
+      guard let self = self else { return }
+      self.cellViewModels = []
+      self.reloadCollectionView?()
+      if let searchModel = searchModel,
+         let searchResultModels = searchModel.search,
+         !searchResultModels.isEmpty {
+        self.totalResults = Int(searchModel.totalResults ?? "0")
+        var mutableCellViewModels: [BaseCellViewModelProtocol] = []
+        searchResultModels.forEach({ searchResultModel in
+          mutableCellViewModels.append(SearchResultCellViewModel(posterImagePath: searchResultModel.poster,
+                                                                 titleLabelText: searchResultModel.title))
+        })
+        mutableCellViewModels.append(SearchLoadingCellViewModel())
+        self.cellViewModels.append(mutableCellViewModels)
+        self.reloadCollectionView?()
+
+        self.searchedText = searchText
+        self.pageNumber = 1
+      } else {
+        cellViewModels = [[SearchEmptyCellViewModel(text: "No result found :(")]]
+        reloadCollectionView?()
+      }
+
+      self.fetchedInitialResults = true
+      self.isFetching = false
+    }
+  }
+
+  func fetchNextPage() {
+    guard fetchedInitialResults, !isFetching, let totalResults = totalResults, let searchedText = searchedText else { return }
+    if pageNumber < totalResults / 15 {
+      isFetching = true
+      networkManager.getSearchResults(for: searchedText, pageNumber: pageNumber + 1) { [weak self] searchModel in
+        guard let self = self else { return }
+        if let searchModel = searchModel,
+           let searchResultModels = searchModel.search,
+           !searchResultModels.isEmpty {
+          var mutableCellViewModels: [BaseCellViewModelProtocol] = []
+          searchResultModels.forEach({ searchResultModel in
+            mutableCellViewModels.append(SearchResultCellViewModel(posterImagePath: searchResultModel.poster,
+                                                                   titleLabelText: searchResultModel.title))
+          })
+          self.cellViewModels[self.cellViewModels.count - 1].removeLast()
+          mutableCellViewModels.append(SearchLoadingCellViewModel())
+          self.cellViewModels.append(mutableCellViewModels)
+          self.reloadCollectionView?()
+        }
+
+        self.isFetching = false
+        self.pageNumber += 1
+      }
+    } else {
+      cellViewModels[cellViewModels.count - 1].removeLast()
+      cellViewModels.append([SearchEmptyCellViewModel(text: "No more results")])
+      reloadCollectionView?()
+    }
+  }
+}
+
+// MARK: - CollectionView Getters
 extension SearchViewModel {
   func numberOfSections() -> Int {
     return cellViewModels.count
@@ -66,11 +135,19 @@ extension SearchViewModel {
   func cellViewModelForItemAt(_ indexPath: IndexPath) -> BaseCellViewModelProtocol {
     return cellViewModels[indexPath.section][indexPath.row]
   }
+
+  func sizeForItemAt(_ indexPath: IndexPath) -> CGSize {
+    return cellViewModels[indexPath.section][indexPath.row].getSize()
+  }
 }
 
+// MARK: CollectionViewCell register
 extension SearchViewModel {
   enum CellTypes: CaseIterable, CollectionViewCellTypable {
-    case genericSearchResult
+    case searchResult
+    case searchLoading
+    case searchPlaceholder
+    case searchEmpty
 
     var identifier: String {
       return String(describing: cellClass)
@@ -78,30 +155,11 @@ extension SearchViewModel {
 
     var cellClass: BaseCollectionViewCellProtocol.Type {
       switch self {
-      case .genericSearchResult: return GenericSearchResultCell.self
+      case .searchResult: return SearchResultCell.self
+      case .searchLoading: return SearchLoadingCell.self
+      case .searchPlaceholder: return SearchPlaceholderCell.self
+      case .searchEmpty: return SearchEmptyCell.self
       }
     }
-
-    var cellSize: CGSize {
-      return CGSize(width: 0.0, height: 0.0)
-    }
-  }
-}
-
-class GenericSearchResultCell: UICollectionViewCell, BaseCollectionViewCellProtocol {
-  var indexPath: IndexPath!
-  var cellViewModel: BaseCellViewModelProtocol!
-
-  func configureCell(with indexPath: IndexPath, and cellViewModel: BaseCellViewModelProtocol) {
-    self.indexPath = indexPath
-    self.cellViewModel = cellViewModel
-  }
-}
-
-class GenericSearchResultCellViewModel: BaseCellViewModelProtocol {
-  var type: CollectionViewCellTypable
-
-  init() {
-    type = SearchViewModel.CellTypes.genericSearchResult
   }
 }

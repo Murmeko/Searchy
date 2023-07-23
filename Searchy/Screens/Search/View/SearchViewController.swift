@@ -7,12 +7,9 @@
 
 import UIKit
 
-protocol SearchViewControllerProtocol: BaseViewControllerProtocol {
-  var viewModel: SearchViewModelProtocol { get }
-}
-
-class SearchViewController: UIViewController, SearchViewControllerProtocol {
-  var searchBar: UISearchBar!
+class SearchViewController: UIViewController, BaseViewControllerProtocol {
+  private lazy var brandedTitleView = BrandedTitleView()
+  private let searchController = UISearchController()
   var collectionView: UICollectionView!
 
   var viewModel: SearchViewModelProtocol = SearchViewModel()
@@ -29,35 +26,32 @@ class SearchViewController: UIViewController, SearchViewControllerProtocol {
 extension SearchViewController {
   internal func setupView() {
     view.backgroundColor = .systemBackground
+
+    navigationItem.titleView = brandedTitleView
+    navigationItem.searchController = searchController
+
     setupSearchBar()
     setupCollectionView()
   }
 }
 
+// MARK: - SearchBar Setup
 extension SearchViewController: UISearchBarDelegate {
   private func setupSearchBar() {
-    searchBar = UISearchBar()
-    searchBar.searchBarStyle = UISearchBar.Style.default
-    searchBar.placeholder = " Search..."
-    searchBar.sizeToFit()
-    searchBar.isTranslucent = false
-    searchBar.backgroundImage = UIImage()
-    searchBar.delegate = self
-
-    navigationItem.titleView = searchBar
+    searchController.searchBar.delegate = self
   }
 
-  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    viewModel.fetchResults(for: searchBar.text)
+    searchController.isActive = false
   }
 }
 
-extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+// MARK: - CollectionView Setup
+extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   private func setupCollectionView() {
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    let cellWidth = (UIScreen.main.bounds.width - 30) / 2
-    let cellHeight = cellWidth * 2
-    layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
 
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
@@ -76,7 +70,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 
   private final func registerCells() {
     SearchViewModel.CellTypes.allCases.forEach { (cellType) in
-      collectionView.register(cellType.cellClass, forCellWithReuseIdentifier: cellType.identifier)
+      collectionView.register(UINib(nibName: cellType.identifier, bundle: nil), forCellWithReuseIdentifier: cellType.identifier)
     }
   }
 
@@ -90,12 +84,17 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cellViewModel = viewModel.cellViewModelForItemAt(indexPath)
-
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellViewModel.type.identifier,
-                                                        for: indexPath) as? BaseCollectionViewCellProtocol else { fatalError() }
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellViewModel.type.identifier, for: indexPath) as? BaseCollectionViewCellProtocol else { fatalError() }
     cell.configureCell(with: indexPath, and: cellViewModel)
-    cell.backgroundColor = .systemIndigo
     return cell
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return viewModel.sizeForItemAt(indexPath)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    if cell is SearchLoadingCell { viewModel.fetchNextPage() }
   }
 }
 

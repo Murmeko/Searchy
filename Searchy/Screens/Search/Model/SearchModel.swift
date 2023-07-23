@@ -25,7 +25,7 @@ struct SearchResultModel: Codable {
   let title: String?
   let year: String?
   let imdbId: String?
-  let type: SearchResultType?
+  let type: String?
   let poster: String?
 
   enum CodingKeys: String, CodingKey {
@@ -35,8 +35,4 @@ struct SearchResultModel: Codable {
     case type = "Type"
     case poster = "Poster"
   }
-}
-
-enum SearchResultType: String, Codable {
-  case movie, series, episode
 }
