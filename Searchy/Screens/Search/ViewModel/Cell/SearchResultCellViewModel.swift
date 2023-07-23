@@ -30,7 +30,6 @@ class SearchResultCellViewModel: SearchResultCellViewModelProtocol {
   func getSize() -> CGSize {
     let cellWidth = (UIScreen.main.bounds.width - 30) / 2
     let posterImageHeight = (cellWidth - 32) * 1.6
-    let titleLabelHeight = titleLabelText!.height(withConstrainedWidth: cellWidth - 32, font: UIFont.systemFont(ofSize: 18))
-    return CGSize(width: cellWidth, height: (16.0 + posterImageHeight + 12.0 + titleLabelHeight + 16.0))
+    return CGSize(width: cellWidth, height: (16.0 + posterImageHeight + 12.0 + 48.0 + 16.0))
   }
 }

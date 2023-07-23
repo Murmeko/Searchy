@@ -13,7 +13,8 @@ protocol SearchRouterProtocol: BaseRouterProtocol {
 
 class SearchRouter: BaseRouter, SearchRouterProtocol {
   func pushDetailViewController(imdbID: String) {
-    let detailViewController = DetailViewController()
+    let detailViewModel = DetailViewModel(with: imdbID)
+    let detailViewController = DetailViewController(viewModel: detailViewModel)
     detailViewController.modalPresentationStyle = .overFullScreen
     presentViewController?(detailViewController)
   }

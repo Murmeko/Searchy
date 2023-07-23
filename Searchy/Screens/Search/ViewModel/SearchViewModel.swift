@@ -156,7 +156,6 @@ extension SearchViewModel {
   enum CellTypes: CaseIterable, CollectionViewCellTypable {
     case searchResult
     case searchLoading
-    case searchPlaceholder
     case searchEmpty
 
     var identifier: String {
@@ -167,7 +166,6 @@ extension SearchViewModel {
       switch self {
       case .searchResult: return SearchResultCell.self
       case .searchLoading: return SearchLoadingCell.self
-      case .searchPlaceholder: return SearchPlaceholderCell.self
       case .searchEmpty: return SearchEmptyCell.self
       }
     }
