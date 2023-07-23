@@ -28,7 +28,7 @@
 		1B13F5342A6982480006F3F0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5332A6982480006F3F0 /* Constants.swift */; };
 		1B13F5382A698A1F0006F3F0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5372A698A1F0006F3F0 /* SearchViewController.swift */; };
 		1B13F53B2A698BFD0006F3F0 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F53A2A698BFD0006F3F0 /* SplashViewModel.swift */; };
-		1B13F53E2A69EE750006F3F0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F53D2A69EE750006F3F0 /* BaseViewController.swift */; };
+		1B13F53E2A69EE750006F3F0 /* BaseViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F53D2A69EE750006F3F0 /* BaseViewControllerProtocol.swift */; };
 		1B13F5402A69EECE0006F3F0 /* BaseViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F53F2A69EECE0006F3F0 /* BaseViewModelProtocol.swift */; };
 		1B13F5432A69FBCB0006F3F0 /* GeneralBrandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5422A69FBCB0006F3F0 /* GeneralBrandView.swift */; };
 		1B13F5452A6A03320006F3F0 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B13F5442A6A03320006F3F0 /* BaseRouter.swift */; };
@@ -49,6 +49,8 @@
 		1B13F5742A6C21550006F3F0 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 1B13F5732A6C21550006F3F0 /* Nuke */; };
 		1B13F5772A6C22D70006F3F0 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 1B13F5762A6C22D70006F3F0 /* NukeExtensions */; };
 		1B16E24B2A6D8CEA002B1A3D /* notification.apns in Resources */ = {isa = PBXBuildFile; fileRef = 1B16E24A2A6D8CEA002B1A3D /* notification.apns */; };
+		1B16E24D2A6DC634002B1A3D /* CollectionViewCellTypable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16E24C2A6DC634002B1A3D /* CollectionViewCellTypable.swift */; };
+		1B16E24F2A6DC645002B1A3D /* CollectionViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16E24E2A6DC645002B1A3D /* CollectionViewModelable.swift */; };
 		1BEEAB152A6C5CAD00ED2E39 /* BrandedTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEAB142A6C5CAD00ED2E39 /* BrandedTitleView.swift */; };
 		1BEEAB182A6C63AD00ED2E39 /* SearchEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEAB162A6C63AC00ED2E39 /* SearchEmptyCell.swift */; };
 		1BEEAB192A6C63AD00ED2E39 /* SearchEmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEEAB172A6C63AC00ED2E39 /* SearchEmptyCell.xib */; };
@@ -99,7 +101,7 @@
 		1B13F5332A6982480006F3F0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1B13F5372A698A1F0006F3F0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1B13F53A2A698BFD0006F3F0 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
-		1B13F53D2A69EE750006F3F0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		1B13F53D2A69EE750006F3F0 /* BaseViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerProtocol.swift; sourceTree = "<group>"; };
 		1B13F53F2A69EECE0006F3F0 /* BaseViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelProtocol.swift; sourceTree = "<group>"; };
 		1B13F5422A69FBCB0006F3F0 /* GeneralBrandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralBrandView.swift; sourceTree = "<group>"; };
 		1B13F5442A6A03320006F3F0 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
@@ -118,6 +120,8 @@
 		1B13F56E2A6C16640006F3F0 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		1B13F56F2A6C16640006F3F0 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		1B16E24A2A6D8CEA002B1A3D /* notification.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = notification.apns; sourceTree = "<group>"; };
+		1B16E24C2A6DC634002B1A3D /* CollectionViewCellTypable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellTypable.swift; sourceTree = "<group>"; };
+		1B16E24E2A6DC645002B1A3D /* CollectionViewModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModelable.swift; sourceTree = "<group>"; };
 		1BEEAB142A6C5CAD00ED2E39 /* BrandedTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandedTitleView.swift; sourceTree = "<group>"; };
 		1BEEAB162A6C63AC00ED2E39 /* SearchEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyCell.swift; sourceTree = "<group>"; };
 		1BEEAB172A6C63AC00ED2E39 /* SearchEmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchEmptyCell.xib; sourceTree = "<group>"; };
@@ -291,8 +295,8 @@
 				1B13F5442A6A03320006F3F0 /* BaseRouter.swift */,
 				1B13F52D2A697DA70006F3F0 /* NetworkReachability.swift */,
 				1B13F5672A6B475A0006F3F0 /* Extensions */,
+				1B16E2502A6DC65F002B1A3D /* Protocols */,
 				1B13F5652A6B472F0006F3F0 /* View */,
-				1B13F5662A6B47470006F3F0 /* ViewModel */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -377,21 +381,11 @@
 		1B13F5652A6B472F0006F3F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1B13F53D2A69EE750006F3F0 /* BaseViewController.swift */,
 				1B13F5602A6B36C50006F3F0 /* BaseCollectionViewCellProtocol.swift */,
 				1B13F5422A69FBCB0006F3F0 /* GeneralBrandView.swift */,
 				1BEEAB142A6C5CAD00ED2E39 /* BrandedTitleView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1B13F5662A6B47470006F3F0 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				1B13F53F2A69EECE0006F3F0 /* BaseViewModelProtocol.swift */,
-				1B13F55E2A6B35AE0006F3F0 /* BaseCellViewModelProtocol.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		1B13F5672A6B475A0006F3F0 /* Extensions */ = {
@@ -430,6 +424,18 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1B16E2502A6DC65F002B1A3D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1B13F53D2A69EE750006F3F0 /* BaseViewControllerProtocol.swift */,
+				1B13F53F2A69EECE0006F3F0 /* BaseViewModelProtocol.swift */,
+				1B13F55E2A6B35AE0006F3F0 /* BaseCellViewModelProtocol.swift */,
+				1B16E24E2A6DC645002B1A3D /* CollectionViewModelable.swift */,
+				1B16E24C2A6DC634002B1A3D /* CollectionViewCellTypable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		1BEEAB222A6D4F3200ED2E39 /* Model */ = {
@@ -620,7 +626,8 @@
 				1B13F5402A69EECE0006F3F0 /* BaseViewModelProtocol.swift in Sources */,
 				1BEEAB272A6D4F7600ED2E39 /* DetailNetworkManager.swift in Sources */,
 				1B13F55F2A6B35AE0006F3F0 /* BaseCellViewModelProtocol.swift in Sources */,
-				1B13F53E2A69EE750006F3F0 /* BaseViewController.swift in Sources */,
+				1B13F53E2A69EE750006F3F0 /* BaseViewControllerProtocol.swift in Sources */,
+				1B16E24D2A6DC634002B1A3D /* CollectionViewCellTypable.swift in Sources */,
 				1B13F5452A6A03320006F3F0 /* BaseRouter.swift in Sources */,
 				1B13F54E2A6A08560006F3F0 /* SearchRouter.swift in Sources */,
 				1B13F4E92A6975D60006F3F0 /* SceneDelegate.swift in Sources */,
@@ -629,6 +636,7 @@
 				1BEEAB1B2A6C63CE00ED2E39 /* SearchEmptyCellViewModel.swift in Sources */,
 				1B13F5702A6C16640006F3F0 /* SearchResultCell.swift in Sources */,
 				1B13F52E2A697DA70006F3F0 /* NetworkReachability.swift in Sources */,
+				1B16E24F2A6DC645002B1A3D /* CollectionViewModelable.swift in Sources */,
 				1B13F5582A6A0A060006F3F0 /* DetailRouter.swift in Sources */,
 				1B13F55D2A6B33D10006F3F0 /* SearchModel.swift in Sources */,
 				1B13F5432A69FBCB0006F3F0 /* GeneralBrandView.swift in Sources */,

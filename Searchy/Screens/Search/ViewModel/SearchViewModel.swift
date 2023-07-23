@@ -7,22 +7,6 @@
 
 import UIKit
 
-protocol CollectionViewCellTypable {
-  var identifier: String { get }
-  var cellClass: BaseCollectionViewCellProtocol.Type { get }
-}
-
-protocol CollectionViewModelable {
-  var reloadCollectionView: (() -> Void)? { get set }
-
-  func numberOfSections() -> Int
-  func numberOfItemsInSection(_ section: Int) -> Int
-  func cellViewModelForItemAt(_ indexPath: IndexPath) -> BaseCellViewModelProtocol
-  func sizeForItemAt(_ indexPath: IndexPath) -> CGSize
-  func willDisplay(_ cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
-  func didSelectItemAt(_ indexPath: IndexPath)
-}
-
 protocol SearchViewModelProtocol: BaseViewModelProtocol, CollectionViewModelable {
   var router: SearchRouterProtocol { get set }
 
@@ -47,12 +31,11 @@ class SearchViewModel: SearchViewModelProtocol {
   var reloadCollectionView: (() -> Void)?
 
   func viewIsReady() {
-    cellViewModels = [[SearchEmptyCellViewModel(text: "Enter a text to search")]]
-    reloadCollectionView?()
+    setInitialEmptyCell()
   }
 }
 
-// MARK: Networking
+// MARK: ViewModel Networking
 extension SearchViewModel {
   func fetchResults(for searchText: String?) {
     guard !isFetching, let searchText = searchText else { return }
@@ -61,30 +44,22 @@ extension SearchViewModel {
     searchedText = nil
     pageNumber = 0
 
-    cellViewModels = [[SearchLoadingCellViewModel()]]
-    reloadCollectionView?()
+    setLoadingCell()
 
     networkManager.getSearchResults(for: searchText) { [weak self] searchModel in
       guard let self = self else { return }
       self.cellViewModels = []
       self.reloadCollectionView?()
-      if let searchModel = searchModel,
-         let searchResultModels = searchModel.search,
-         !searchResultModels.isEmpty {
-        self.totalResults = Int(searchModel.totalResults ?? "0")
-        var mutableCellViewModels: [BaseCellViewModelProtocol] = []
-        searchResultModels.forEach({ searchResultModel in
-          mutableCellViewModels.append(SearchResultCellViewModel(model: searchResultModel))
-        })
-        mutableCellViewModels.append(SearchLoadingCellViewModel())
-        self.cellViewModels.append(mutableCellViewModels)
+      if let totalResults = searchModel?.totalResults, let searchResultModels = searchModel?.search, !searchResultModels.isEmpty {
+        self.totalResults = Int(totalResults)
+
+        self.cellViewModels.append(getSearchResultCellViewModels(for: searchResultModels))
         self.reloadCollectionView?()
 
         self.searchedText = searchText
         self.pageNumber = 1
       } else {
-        cellViewModels = [[SearchEmptyCellViewModel(text: "No result found :(")]]
-        reloadCollectionView?()
+        self.setNoResultFoundCell()
       }
 
       self.fetchedInitialResults = true
@@ -98,16 +73,9 @@ extension SearchViewModel {
       isFetching = true
       networkManager.getSearchResults(for: searchedText, pageNumber: pageNumber + 1) { [weak self] searchModel in
         guard let self = self else { return }
-        if let searchModel = searchModel,
-           let searchResultModels = searchModel.search,
-           !searchResultModels.isEmpty {
-          var mutableCellViewModels: [BaseCellViewModelProtocol] = []
-          searchResultModels.forEach({ searchResultModel in
-            mutableCellViewModels.append(SearchResultCellViewModel(model: searchResultModel))
-          })
+        if let searchResultModels = searchModel?.search, !searchResultModels.isEmpty {
           self.cellViewModels[self.cellViewModels.count - 1].removeLast()
-          mutableCellViewModels.append(SearchLoadingCellViewModel())
-          self.cellViewModels.append(mutableCellViewModels)
+          self.cellViewModels.append(getSearchResultCellViewModels(for: searchResultModels))
           self.reloadCollectionView?()
         }
 
@@ -115,10 +83,43 @@ extension SearchViewModel {
         self.pageNumber += 1
       }
     } else {
-      cellViewModels[cellViewModels.count - 1].removeLast()
-      cellViewModels.append([SearchEmptyCellViewModel(text: "No more results")])
-      reloadCollectionView?()
+      insertNoMoreResultsFoundCell()
     }
+  }
+}
+
+// MARK: ViewModel Cell Parsers
+extension SearchViewModel {
+  private func setInitialEmptyCell() {
+    cellViewModels = [[SearchEmptyCellViewModel(text: "Enter a text to search")]]
+    reloadCollectionView?()
+  }
+
+  private func setLoadingCell() {
+    cellViewModels = [[SearchLoadingCellViewModel()]]
+    reloadCollectionView?()
+  }
+
+  private func getSearchResultCellViewModels(for searchResultModels: [SearchResultModel]) -> [BaseCellViewModelProtocol] {
+    var cellViewModels: [BaseCellViewModelProtocol] = []
+    searchResultModels.forEach({ searchResultModel in
+      cellViewModels.append(SearchResultCellViewModel(model: searchResultModel))
+    })
+
+    cellViewModels.append(SearchLoadingCellViewModel())
+
+    return cellViewModels
+  }
+
+  private func setNoResultFoundCell() {
+    cellViewModels = [[SearchEmptyCellViewModel(text: "No result found")]]
+    reloadCollectionView?()
+  }
+
+  private func insertNoMoreResultsFoundCell() {
+    cellViewModels[cellViewModels.count - 1].removeLast()
+    cellViewModels.append([SearchEmptyCellViewModel(text: "No more result found")])
+    reloadCollectionView?()
   }
 }
 
@@ -151,7 +152,7 @@ extension SearchViewModel {
   }
 }
 
-// MARK: CollectionViewCell register
+// MARK: CollectionViewCell Cell Registration
 extension SearchViewModel {
   enum CellTypes: CaseIterable, CollectionViewCellTypable {
     case searchResult

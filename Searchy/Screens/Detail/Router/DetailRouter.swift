@@ -7,8 +7,6 @@
 
 import Foundation
 
-protocol DetailRouterProtocol: BaseRouterProtocol {
-}
+protocol DetailRouterProtocol: BaseRouterProtocol {}
 
-class DetailRouter: BaseRouter, DetailRouterProtocol {
-}
+class DetailRouter: BaseRouter, DetailRouterProtocol {}
