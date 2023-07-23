@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="SearchResultCell" customModule="Searchy" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="342" height="587"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="342" height="587"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLk-I4-3Ex">
+                        <rect key="frame" x="0.0" y="0.0" width="342" height="587"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l34-EB-hzp">
+                                <rect key="frame" x="8" y="8" width="326" height="571"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dhr-xw-ZxS">
+                                        <rect key="frame" x="8" y="8" width="310" height="496"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="dhr-xw-ZxS" secondAttribute="height" multiplier="10:16" id="BYC-Og-mNU"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placeholder Text - Placeholder Text -  Placeholder Text - Placeholder Text -  Placeholder Text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXP-MA-Ouw">
+                                        <rect key="frame" x="12" y="516" width="302" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dhr-xw-ZxS" secondAttribute="trailing" constant="8" id="P7k-At-xsa"/>
+                                    <constraint firstItem="tXP-MA-Ouw" firstAttribute="leading" secondItem="l34-EB-hzp" secondAttribute="leading" constant="12" id="QGJ-ZI-62D"/>
+                                    <constraint firstItem="dhr-xw-ZxS" firstAttribute="leading" secondItem="l34-EB-hzp" secondAttribute="leading" constant="8" id="TLw-pZ-5HW"/>
+                                    <constraint firstAttribute="trailing" secondItem="tXP-MA-Ouw" secondAttribute="trailing" constant="12" id="XDN-F6-ksb"/>
+                                    <constraint firstAttribute="bottom" secondItem="tXP-MA-Ouw" secondAttribute="bottom" constant="12" id="jvp-ka-0X6"/>
+                                    <constraint firstItem="tXP-MA-Ouw" firstAttribute="top" secondItem="dhr-xw-ZxS" secondAttribute="bottom" constant="12" id="q37-dU-Ydb"/>
+                                    <constraint firstItem="dhr-xw-ZxS" firstAttribute="top" secondItem="l34-EB-hzp" secondAttribute="top" constant="8" id="xah-BD-PZk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l34-EB-hzp" firstAttribute="top" secondItem="PLk-I4-3Ex" secondAttribute="top" constant="8" id="8yo-3W-W42"/>
+                            <constraint firstAttribute="trailing" secondItem="l34-EB-hzp" secondAttribute="trailing" constant="8" id="B0j-Fa-57h"/>
+                            <constraint firstItem="l34-EB-hzp" firstAttribute="leading" secondItem="PLk-I4-3Ex" secondAttribute="leading" constant="8" id="dzu-zI-6M1"/>
+                            <constraint firstAttribute="bottom" secondItem="l34-EB-hzp" secondAttribute="bottom" constant="8" id="gXq-Uf-vkc"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="PLk-I4-3Ex" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="R7W-o5-2tW"/>
+                <constraint firstAttribute="bottom" secondItem="PLk-I4-3Ex" secondAttribute="bottom" id="T5i-bh-UTG"/>
+                <constraint firstItem="PLk-I4-3Ex" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hkz-Lc-HsS"/>
+                <constraint firstAttribute="trailing" secondItem="PLk-I4-3Ex" secondAttribute="trailing" id="iu6-zn-vyc"/>
+            </constraints>
+            <size key="customSize" width="342" height="642"/>
+            <connections>
+                <outlet property="containerView" destination="PLk-I4-3Ex" id="jPu-tM-dJd"/>
+                <outlet property="posterImageView" destination="dhr-xw-ZxS" id="JCC-VU-ft5"/>
+                <outlet property="searchyBackgroundView" destination="l34-EB-hzp" id="XsS-2v-A9O"/>
+                <outlet property="titleLabel" destination="tXP-MA-Ouw" id="If4-3V-42b"/>
+            </connections>
+            <point key="canvasLocation" x="361.83206106870227" y="228.16901408450704"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
