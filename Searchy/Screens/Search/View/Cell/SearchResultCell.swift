@@ -10,6 +10,7 @@ import NukeExtensions
 
 class SearchResultCell: BaseCollectionViewCell {
   @IBOutlet weak var containerView: UIView!
+  @IBOutlet weak var searchyBackgroundView: UIView!
   @IBOutlet weak var posterImageView: UIImageView!
   @IBOutlet weak var titleLabel: UILabel!
 
@@ -18,8 +19,10 @@ class SearchResultCell: BaseCollectionViewCell {
 
     guard let cellViewModel = cellViewModel as? SearchResultCellViewModelProtocol else { return }
     containerView.backgroundColor = .secondarySystemBackground
+    searchyBackgroundView.backgroundColor = .tertiarySystemBackground
 
-    containerView.layer.cornerRadius = 25
+    containerView.layer.cornerRadius = 24
+    searchyBackgroundView.layer.cornerRadius = 20
     posterImageView.layer.cornerRadius = 16
 
     loadImage(with: cellViewModel.posterImageURL, into: posterImageView)

@@ -14,7 +14,8 @@ class SearchNetworkManager {
     let parameters: [String: Any] = [ParameterKeys.token.rawValue: Constants.Search.apiKey,
                                      ParameterKeys.searchText.rawValue: text,
                                      ParameterKeys.pageNumber.rawValue: pageNumber ?? 1]
-    AF.request(basePath, parameters: parameters).responseDecodable(of: SearchModel.self) { response in
+
+    AF.request(basePath, parameters: parameters, encoding: URLEncoding.queryString).responseDecodable(of: SearchModel.self) { response in
       switch response.result {
       case .success(let searchModel): completion(searchModel)
       case .failure(let error): print(error); completion(nil)
