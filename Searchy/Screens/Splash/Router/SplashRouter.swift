@@ -14,7 +14,7 @@ protocol SplashRouterProtocol: BaseRouterProtocol {
 class SplashRouter: BaseRouter, SplashRouterProtocol {
   func presentSearchViewController() {
     let searchViewController = SearchViewController()
-    UIApplication.shared.firstWindow()?.rootViewController = searchViewController
+    UIApplication.shared.firstWindow()?.rootViewController = UINavigationController(rootViewController: searchViewController)
     UIApplication.shared.firstWindow()?.makeKeyAndVisible()
   }
 }

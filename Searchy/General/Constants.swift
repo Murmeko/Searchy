@@ -16,4 +16,8 @@ struct Constants {
   struct Splash {
     static let openingTitle = "openingTitle"
   }
+
+  struct Search {
+    static let apiKey = "83d6d939"
+  }
 }
