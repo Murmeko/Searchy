@@ -12,14 +12,20 @@ protocol DetailViewControllerProtocol: BaseViewControllerProtocol {
 }
 
 class DetailViewController: UIViewController, DetailViewControllerProtocol {
-  lazy var dimmerView: UIView = {
+  private lazy var activityIndicatorView: UIActivityIndicatorView = {
+    let activityIndicatorView =  UIActivityIndicatorView()
+    activityIndicatorView.style = .large
+    return activityIndicatorView
+  }()
+
+  private lazy var dimmerView: UIView = {
     let view = UIView()
     view.backgroundColor = .black
     view.alpha = 0
     return view
   }()
 
-  lazy var contentView: UIView = {
+  private lazy var contentView: UIView = {
     let view = UIView()
     view.backgroundColor = .secondarySystemBackground
     view.layer.cornerRadius = 24
@@ -27,31 +33,31 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     return view
   }()
 
-  lazy var sliderPillView: UIView = {
+  private lazy var sliderPillView: UIView = {
     let view = UIView()
     view.backgroundColor = .label
     view.layer.cornerRadius = 3
     return view
   }()
 
-  lazy var titleLabel: UILabel = {
+  private lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.font = .boldSystemFont(ofSize: 32)
     label.numberOfLines = 2
     return label
   }()
 
-  lazy var genreLabel: UILabel = {
+  private lazy var genreLabel: UILabel = {
     let label = UILabel()
     return label
   }()
 
-  lazy var releaseDateLabel: UILabel = {
+  private lazy var releaseDateLabel: UILabel = {
     let label = UILabel()
     return label
   }()
 
-  lazy var summaryLabel: UILabel = {
+  private lazy var summaryLabel: UILabel = {
     let label = UILabel()
     label.numberOfLines = 0
     return label
@@ -85,12 +91,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     bindViewModel()
     viewModel.viewIsReady()
   }
-
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    animateShowDimmedView()
-    animatePresentContainer()
-  }
 }
 
 // MARK: ViewController Setup
@@ -100,45 +100,50 @@ extension DetailViewController {
 
     setupDismissGesture()
     setupPanGesture()
-
     setDefaultViewHeight()
+
+    setupDimmerView()
     setGeneralViewConstraints()
+    setupActivityIndicatorView()
   }
 
   private func setDefaultViewHeight() {
-    defaultHeight = 220
+    defaultHeight = 250
     dismissibleHeight = defaultHeight - 50
-    maximumContainerHeight = UIScreen.main.bounds.height / 2
+    maximumContainerHeight = (UIScreen.main.bounds.height / 2) + 50
     currentContainerHeight = defaultHeight
   }
 
-  private func setGeneralViewConstraints() {
-    var constraints: [NSLayoutConstraint] = []
-
+  private func setupDimmerView() {
     view.addSubview(dimmerView)
     dimmerView.translatesAutoresizingMaskIntoConstraints = false
-    let dimmerViewConstraints: [NSLayoutConstraint] = [dimmerView.topAnchor.constraint(equalTo: view.topAnchor),
-                                                       dimmerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                                                       dimmerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                                       dimmerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)]
-    constraints.append(contentsOf: dimmerViewConstraints)
+    dimmerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    dimmerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    dimmerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+    dimmerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+  }
 
+  private func setupActivityIndicatorView() {
+    view.addSubview(activityIndicatorView)
+    activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+    activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    activityIndicatorView.isHidden = true
+  }
+
+  private func setGeneralViewConstraints() {
     view.addSubview(contentView)
     contentView.translatesAutoresizingMaskIntoConstraints = false
-    var contentViewConstraints: [NSLayoutConstraint] = []
-    contentViewConstraints.append(contentsOf: [contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                               contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
-    constraints.append(contentsOf: contentViewConstraints)
-
-    NSLayoutConstraint.activate(constraints)
-
-    setContentViewConstraints()
+    contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+    contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
 
     containerViewHeightConstraint = contentView.heightAnchor.constraint(equalToConstant: defaultHeight)
     containerViewBottomConstraint = contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: defaultHeight)
 
     containerViewHeightConstraint?.isActive = true
     containerViewBottomConstraint?.isActive = true
+
+    setContentViewConstraints()
   }
 
   private func setContentViewConstraints() {
@@ -188,9 +193,33 @@ extension DetailViewController {
 // MARK: - ViewModel Bindings
 extension DetailViewController {
   internal func bindViewModel() {
+    viewModel.activityIndicatorStartAnimating = activityIndicatorStartAnimating()
+    viewModel.activityIndicatorStopAnimating = activityIndicatorStopAnimating()
+
+    viewModel.animateViewAppear = animateViewAppear()
     viewModel.updateView = updateView()
-    viewModel.router.pushViewController = pushViewController()
+
     viewModel.router.dismissViewController = dismissViewController()
+  }
+
+  private func activityIndicatorStartAnimating() -> () -> Void {
+    return { [weak self] in
+      guard let self = self else { return }
+      DispatchQueue.main.async {
+        self.activityIndicatorView.isHidden = false
+        self.activityIndicatorView.startAnimating()
+      }
+    }
+  }
+
+  private func activityIndicatorStopAnimating() -> () -> Void {
+    return { [weak self] in
+      guard let self = self else { return }
+      DispatchQueue.main.async {
+        self.activityIndicatorView.stopAnimating()
+        self.activityIndicatorView.isHidden = true
+      }
+    }
   }
 
   private func updateView() -> () -> Void {
@@ -202,6 +231,14 @@ extension DetailViewController {
         self.releaseDateLabel.text = self.viewModel.releaseDateLabelText
         self.summaryLabel.text = self.viewModel.summaryLabelText
       }
+    }
+  }
+
+  private func animateViewAppear() -> () -> Void {
+    return { [weak self] in
+      guard let self = self else { return }
+      self.animateShowDimmedView()
+      self.animatePresentContainer()
     }
   }
 }
@@ -239,7 +276,7 @@ extension DetailViewController {
   }
 
   private func animateContainerHeight(_ height: CGFloat) {
-    UIView.animate(withDuration: 0.5) {
+    UIView.animate(withDuration: 0.25) {
       self.containerViewHeightConstraint?.constant = height
       self.view.layoutIfNeeded()
     }
@@ -271,7 +308,7 @@ extension DetailViewController {
     })
 
     UIView.animate(withDuration: 0.25) {
-      self.containerViewBottomConstraint?.constant = self.defaultHeight
+      self.containerViewBottomConstraint?.constant = self.maximumContainerHeight
       self.view.layoutIfNeeded()
     }
   }

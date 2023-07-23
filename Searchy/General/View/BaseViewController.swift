@@ -20,13 +20,6 @@ extension BaseViewControllerProtocol {
     }
   }
 
-  func pushViewController() -> (UIViewController) -> Void {
-    return { [weak self] viewController in
-      guard let self = self else { return }
-      self.navigationController?.pushViewController(viewController, animated: true)
-    }
-  }
-
   func dismissViewController() -> () -> Void {
     return { [weak self] in
       guard let self = self else { return }
