@@ -9,4 +9,6 @@ import Foundation
 
 protocol BaseCellViewModelProtocol {
   var type: CollectionViewCellTypable { get }
+
+  func getSize() -> CGSize
 }

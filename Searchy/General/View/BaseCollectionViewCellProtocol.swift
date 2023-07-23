@@ -13,3 +13,13 @@ protocol BaseCollectionViewCellProtocol: UICollectionViewCell {
 
   func configureCell(with indexPath: IndexPath, and cellViewModel: BaseCellViewModelProtocol)
 }
+
+class BaseCollectionViewCell: UICollectionViewCell, BaseCollectionViewCellProtocol {
+  var indexPath: IndexPath!
+  var cellViewModel: BaseCellViewModelProtocol!
+
+  func configureCell(with indexPath: IndexPath, and cellViewModel: BaseCellViewModelProtocol) {
+    self.indexPath = indexPath
+    self.cellViewModel = cellViewModel
+  }
+}
