@@ -57,6 +57,7 @@
 		1BEEAB212A6C97CF00ED2E39 /* SearchLoadingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEAB202A6C97CF00ED2E39 /* SearchLoadingCellViewModel.swift */; };
 		1BEEAB242A6D4F3B00ED2E39 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEAB232A6D4F3B00ED2E39 /* DetailModel.swift */; };
 		1BEEAB272A6D4F7600ED2E39 /* DetailNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEAB262A6D4F7600ED2E39 /* DetailNetworkManager.swift */; };
+		1BEEAB292A6D7B0A00ED2E39 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1BEEAB282A6D7B0A00ED2E39 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BEEAB292A6D7B0A00ED2E39 /* FirebaseMessaging in Frameworks */,
 				1B13F52C2A697D570006F3F0 /* Alamofire in Frameworks */,
 				1B13F5182A6976C00006F3F0 /* FirebaseAnalytics in Frameworks */,
 				1B13F5772A6C22D70006F3F0 /* NukeExtensions in Frameworks */,
@@ -468,6 +470,7 @@
 				1B13F52B2A697D570006F3F0 /* Alamofire */,
 				1B13F5732A6C21550006F3F0 /* Nuke */,
 				1B13F5762A6C22D70006F3F0 /* NukeExtensions */,
+				1BEEAB282A6D7B0A00ED2E39 /* FirebaseMessaging */,
 			);
 			productName = Searchy;
 			productReference = 1B13F4E32A6975D60006F3F0 /* Searchy.app */;
@@ -1052,6 +1055,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B13F5722A6C21550006F3F0 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeExtensions;
+		};
+		1BEEAB282A6D7B0A00ED2E39 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B13F5162A6976C00006F3F0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
