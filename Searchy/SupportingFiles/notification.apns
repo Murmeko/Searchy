@@ -1,0 +1,8 @@
+{
+    "Simulator Target Bundle": "com.Murmeko.Searchy",
+    "aps": {
+        "alert": "Go search endless results!",
+        "badge": 1,
+        "sound": "default"
+    }
+}

@@ -1,5 +1,5 @@
 //
-//  BaseViewController.swift
+//  BaseViewControllerProtocol.swift
 //  Searchy
 //
 //  Created by Yiğit Erdinç on 21.07.2023.

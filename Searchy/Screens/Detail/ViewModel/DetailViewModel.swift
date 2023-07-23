@@ -54,20 +54,22 @@ class DetailViewModel: DetailViewModelProtocol {
 extension DetailViewModel {
   private func fetchContentDetail(for imdbID: String) {
     networkManager.getContentDetail(for: imdbID) { [weak self] detailModel in
-      guard let self = self else { return }
-      guard let detailModel = detailModel else { return }
-      self.titleLabelText = detailModel.title
-      self.genreLabelText = detailModel.genre
-      self.releaseDateLabelText = detailModel.released
-      self.summaryLabelText = detailModel.plot
-
-      self.activityIndicatorStopAnimating?()
-      self.updateView?()
-      self.animateViewAppear?()
-
+      guard let self = self, let detailModel = detailModel else { self?.router.dismissViewController?(); return }
+      handleFetchContentDetail(detailModel)
       guard let contentTitle = detailModel.title else { return }
       logEvent(with: imdbID, contentTitle)
     }
+  }
+
+  private func handleFetchContentDetail(_ detailModel: DetailModel) {
+    titleLabelText = detailModel.title
+    genreLabelText = detailModel.genre
+    releaseDateLabelText = detailModel.released
+    summaryLabelText = detailModel.plot
+
+    activityIndicatorStopAnimating?()
+    updateView?()
+    animateViewAppear?()
   }
 }
 
