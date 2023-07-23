@@ -15,6 +15,8 @@ protocol SplashViewModelProtocol: BaseViewModelProtocol {
   var developerLabelText: String? { get }
 
   var updateView: (() -> Void)? { get set }
+  var showNoInternetView: (() -> Void)? { get set }
+
   var updateDeveloperLabel: ((_ completion: @escaping (() -> Void)) -> Void)? { get set }
 
   var hideGeneralBrandView: ((_ completion: @escaping (() -> Void)) -> Void)? { get set }
@@ -27,6 +29,8 @@ class SplashViewModel: SplashViewModelProtocol {
   var developerLabelText: String?
 
   var updateView: (() -> Void)?
+  var showNoInternetView: (() -> Void)?
+
   var updateDeveloperLabel: ((_ completion: @escaping (() -> Void)) -> Void)?
 
   var hideGeneralBrandView: ((_ completion: @escaping (() -> Void)) -> Void)?
@@ -41,16 +45,18 @@ class SplashViewModel: SplashViewModelProtocol {
     if NetworkReachability.shared.isReachable {
       backgroundColor = .systemBackground
       developerLabelText = "Yiğit Erdinç"
-    } else {
-      backgroundColor = .red
-      developerLabelText = "No internet connection 😔"
-    }
 
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-      self.updateView?()
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        self.updateView?()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+          guard let self = self else { return }
+          self.requestRemoteConfig()
+        }
+      }
+    } else {
+      hideGeneralBrandView? { [weak self] in
         guard let self = self else { return }
-        self.requestRemoteConfig()
+        self.showNoInternetView?()
       }
     }
   }
