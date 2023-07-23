@@ -94,8 +94,10 @@ extension SplashViewModel {
     developerLabelText = remoteConfig[Constants.Splash.openingTitle].stringValue
     updateDeveloperLabel? { [weak self] in
       guard let self = self else { return }
-      self.hideGeneralBrandView? {
-        self.router.presentSearchViewController()
+      DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        self.hideGeneralBrandView? {
+          self.router.presentSearchViewController()
+        }
       }
     }
   }

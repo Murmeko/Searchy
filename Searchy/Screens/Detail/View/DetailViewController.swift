@@ -103,7 +103,7 @@ extension DetailViewController {
     setDefaultViewHeight()
 
     setupDimmerView()
-    setGeneralViewConstraints()
+    setupContentView()
     setupActivityIndicatorView()
   }
 
@@ -131,7 +131,7 @@ extension DetailViewController {
     activityIndicatorView.isHidden = true
   }
 
-  private func setGeneralViewConstraints() {
+  private func setupContentView() {
     view.addSubview(contentView)
     contentView.translatesAutoresizingMaskIntoConstraints = false
     contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -143,33 +143,45 @@ extension DetailViewController {
     containerViewHeightConstraint?.isActive = true
     containerViewBottomConstraint?.isActive = true
 
-    setContentViewConstraints()
+    setupSliderPillView()
+    setupTitleLabel()
+    setupGenreLabel()
+    setupReleaseDateLabel()
+    setupSummaryLabel()
   }
 
-  private func setContentViewConstraints() {
+  private func setupSliderPillView() {
     contentView.addSubview(sliderPillView)
     sliderPillView.translatesAutoresizingMaskIntoConstraints = false
     sliderPillView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
     sliderPillView.widthAnchor.constraint(equalToConstant: 50).isActive = true
     sliderPillView.heightAnchor.constraint(equalToConstant: 6).isActive = true
     sliderPillView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+  }
 
+  private func setupTitleLabel() {
     contentView.addSubview(titleLabel)
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     titleLabel.topAnchor.constraint(equalTo: sliderPillView.bottomAnchor, constant: 24).isActive = true
     titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
     titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+  }
 
+  private func setupGenreLabel() {
     contentView.addSubview(genreLabel)
     genreLabel.translatesAutoresizingMaskIntoConstraints = false
-    genreLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
+    genreLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6).isActive = true
     genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+  }
 
+  private func setupReleaseDateLabel() {
     contentView.addSubview(releaseDateLabel)
     releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
     releaseDateLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 8).isActive = true
     releaseDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+  }
 
+  private func setupSummaryLabel() {
     contentView.addSubview(summaryLabel)
     summaryLabel.translatesAutoresizingMaskIntoConstraints = false
     summaryLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 36).isActive = true
@@ -178,7 +190,7 @@ extension DetailViewController {
   }
 
   private func setupDismissGesture() {
-    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleCloseAction))
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.animateDismissView))
     dimmerView.addGestureRecognizer(tapGesture)
   }
 
@@ -243,6 +255,7 @@ extension DetailViewController {
   }
 }
 
+// MARK: - DetailViewController Animations
 extension DetailViewController {
   @objc
   private func handlePanGesture(gesture: UIPanGestureRecognizer) {
@@ -268,11 +281,6 @@ extension DetailViewController {
     default:
       break
     }
-  }
-
-  @objc
-  private func handleCloseAction() {
-    animateDismissView()
   }
 
   private func animateContainerHeight(_ height: CGFloat) {
