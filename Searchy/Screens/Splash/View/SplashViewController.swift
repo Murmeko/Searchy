@@ -13,6 +13,14 @@ protocol SplashViewControllerProtocol: BaseViewControllerProtocol {
 
 class SplashViewController: UIViewController, SplashViewControllerProtocol {
   private lazy var generalBrandView = GeneralBrandView()
+
+  private lazy var noWifiImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = Constants.Splash.noWifi
+    imageView.tintColor = .systemIndigo
+    return imageView
+  }()
+
   private lazy var developerLabel: UILabel = {
     let label = UILabel()
     label.font = .boldSystemFont(ofSize: 24)
@@ -37,6 +45,7 @@ extension SplashViewController {
     view.backgroundColor = .systemBackground
     setupGeneralBrandView()
     setupDeveloperLabel()
+    setupNoInternetView()
   }
 
   private func setupGeneralBrandView() {
@@ -52,15 +61,27 @@ extension SplashViewController {
     developerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     developerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -48).isActive = true
   }
+
+  private func setupNoInternetView() {
+    view.addSubview(noWifiImageView)
+    noWifiImageView.translatesAutoresizingMaskIntoConstraints = false
+    noWifiImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    noWifiImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    noWifiImageView.widthAnchor.constraint(equalToConstant: 250).isActive = true
+    noWifiImageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+    noWifiImageView.alpha = 0.0
+  }
 }
 
 // MARK: - ViewModel Bindings
 extension SplashViewController {
   internal func bindViewModel() {
-    viewModel.router.presentViewController = presentViewController()
     viewModel.updateView = updateView()
     viewModel.updateDeveloperLabel = updateDeveloperLabel()
     viewModel.hideGeneralBrandView = generalBrandView.animateDisappear()
+    viewModel.showNoInternetView = showNoInternetView()
+
+    viewModel.router.presentViewController = presentViewController()
   }
 
   private func updateView() -> () -> Void {
@@ -87,6 +108,15 @@ extension SplashViewController {
         }, completion: { _ in
           completion()
         })
+      })
+    }
+  }
+
+  private func showNoInternetView() -> () -> Void {
+    return { [weak self] in
+      guard let self = self else { return }
+      UIView.animate(withDuration: 0.5, animations: {
+        self.noWifiImageView.alpha = 1.0
       })
     }
   }

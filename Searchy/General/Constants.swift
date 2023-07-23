@@ -15,6 +15,7 @@ struct Constants {
 
   struct Splash {
     static let openingTitle = "openingTitle"
+    static let noWifi = UIImage(named: "noWifi")
   }
 
   struct Search {
