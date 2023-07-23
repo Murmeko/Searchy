@@ -94,14 +94,18 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
   }
 
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    if cell is SearchLoadingCell { viewModel.fetchNextPage() }
+    viewModel.willDisplay(cell, forItemAt: indexPath)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    viewModel.didSelectItemAt(indexPath)
   }
 }
 
 // MARK: - ViewModel Bindings
 extension SearchViewController {
   internal func bindViewModel() {
-    viewModel.router.pushViewController = pushViewController()
+    viewModel.router.presentViewController = presentViewController()
     viewModel.router.dismissViewController = dismissViewController()
     viewModel.reloadCollectionView = reloadCollectionView()
   }
@@ -110,6 +114,13 @@ extension SearchViewController {
     return { [weak self] in
       guard let self = self else { return }
       self.collectionView.reloadData()
+    }
+  }
+
+  private func presentViewController() -> (UIViewController) -> Void {
+    return { [weak self] viewController in
+      guard let self = self else { return }
+      self.present(viewController, animated: false)
     }
   }
 }

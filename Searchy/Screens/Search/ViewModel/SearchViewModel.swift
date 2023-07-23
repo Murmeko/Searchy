@@ -19,6 +19,8 @@ protocol CollectionViewModelable {
   func numberOfItemsInSection(_ section: Int) -> Int
   func cellViewModelForItemAt(_ indexPath: IndexPath) -> BaseCellViewModelProtocol
   func sizeForItemAt(_ indexPath: IndexPath) -> CGSize
+  func willDisplay(_ cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
+  func didSelectItemAt(_ indexPath: IndexPath)
 }
 
 protocol SearchViewModelProtocol: BaseViewModelProtocol, CollectionViewModelable {
@@ -72,8 +74,7 @@ extension SearchViewModel {
         self.totalResults = Int(searchModel.totalResults ?? "0")
         var mutableCellViewModels: [BaseCellViewModelProtocol] = []
         searchResultModels.forEach({ searchResultModel in
-          mutableCellViewModels.append(SearchResultCellViewModel(posterImagePath: searchResultModel.poster,
-                                                                 titleLabelText: searchResultModel.title))
+          mutableCellViewModels.append(SearchResultCellViewModel(model: searchResultModel))
         })
         mutableCellViewModels.append(SearchLoadingCellViewModel())
         self.cellViewModels.append(mutableCellViewModels)
@@ -102,8 +103,7 @@ extension SearchViewModel {
            !searchResultModels.isEmpty {
           var mutableCellViewModels: [BaseCellViewModelProtocol] = []
           searchResultModels.forEach({ searchResultModel in
-            mutableCellViewModels.append(SearchResultCellViewModel(posterImagePath: searchResultModel.poster,
-                                                                   titleLabelText: searchResultModel.title))
+            mutableCellViewModels.append(SearchResultCellViewModel(model: searchResultModel))
           })
           self.cellViewModels[self.cellViewModels.count - 1].removeLast()
           mutableCellViewModels.append(SearchLoadingCellViewModel())
@@ -139,6 +139,16 @@ extension SearchViewModel {
   func sizeForItemAt(_ indexPath: IndexPath) -> CGSize {
     return cellViewModels[indexPath.section][indexPath.row].getSize()
   }
+
+  func willDisplay(_ cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    if cell is SearchLoadingCell { fetchNextPage() }
+  }
+
+  func didSelectItemAt(_ indexPath: IndexPath) {
+    guard let cellViewModel = cellViewModels[indexPath.section][indexPath.row] as? SearchResultCellViewModelProtocol,
+          let imdbID = cellViewModel.imdbID else { return }
+    router.pushDetailViewController(imdbID: imdbID)
+  }
 }
 
 // MARK: CollectionViewCell register
@@ -146,7 +156,6 @@ extension SearchViewModel {
   enum CellTypes: CaseIterable, CollectionViewCellTypable {
     case searchResult
     case searchLoading
-    case searchPlaceholder
     case searchEmpty
 
     var identifier: String {
@@ -157,7 +166,6 @@ extension SearchViewModel {
       switch self {
       case .searchResult: return SearchResultCell.self
       case .searchLoading: return SearchLoadingCell.self
-      case .searchPlaceholder: return SearchPlaceholderCell.self
       case .searchEmpty: return SearchEmptyCell.self
       }
     }
