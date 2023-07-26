@@ -17,7 +17,8 @@ protocol SearchViewModelProtocol: BaseViewModelProtocol, CollectionViewModelable
 class SearchViewModel: SearchViewModelProtocol {
   var router: SearchRouterProtocol = SearchRouter()
 
-  private var cellViewModels: [[BaseCellViewModelProtocol]] = []
+  var cellViewModels: [[BaseCellViewModelProtocol]] = []
+
   private var networkManager = SearchNetworkManager()
 
   private var pageNumber: Int = 1

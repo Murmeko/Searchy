@@ -12,20 +12,20 @@ protocol DetailViewControllerProtocol: BaseViewControllerProtocol {
 }
 
 class DetailViewController: UIViewController, DetailViewControllerProtocol {
-  private lazy var activityIndicatorView: UIActivityIndicatorView = {
+  lazy var activityIndicatorView: UIActivityIndicatorView = {
     let activityIndicatorView =  UIActivityIndicatorView()
     activityIndicatorView.style = .large
     return activityIndicatorView
   }()
 
-  private lazy var dimmerView: UIView = {
+  lazy var dimmerView: UIView = {
     let view = UIView()
     view.backgroundColor = .black
     view.alpha = 0
     return view
   }()
 
-  private lazy var contentView: UIView = {
+  lazy var contentView: UIView = {
     let view = UIView()
     view.backgroundColor = .secondarySystemBackground
     view.layer.cornerRadius = 24
@@ -33,31 +33,31 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     return view
   }()
 
-  private lazy var sliderPillView: UIView = {
+  lazy var sliderPillView: UIView = {
     let view = UIView()
     view.backgroundColor = .label
     view.layer.cornerRadius = 3
     return view
   }()
 
-  private lazy var titleLabel: UILabel = {
+  lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.font = .boldSystemFont(ofSize: 32)
     label.numberOfLines = 2
     return label
   }()
 
-  private lazy var genreLabel: UILabel = {
+  lazy var genreLabel: UILabel = {
     let label = UILabel()
     return label
   }()
 
-  private lazy var releaseDateLabel: UILabel = {
+  lazy var releaseDateLabel: UILabel = {
     let label = UILabel()
     return label
   }()
 
-  private lazy var summaryLabel: UILabel = {
+  lazy var summaryLabel: UILabel = {
     let label = UILabel()
     label.numberOfLines = 0
     return label
