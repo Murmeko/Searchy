@@ -8,8 +8,8 @@
 import UIKit
 
 class SearchViewController: UIViewController, BaseViewControllerProtocol {
-  private lazy var brandedTitleView = BrandedTitleView()
-  private let searchController = UISearchController()
+  lazy var brandedTitleView = BrandedTitleView()
+  let searchController = UISearchController()
   var collectionView: UICollectionView!
 
   var viewModel: SearchViewModelProtocol = SearchViewModel()
