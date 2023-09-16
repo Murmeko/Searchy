@@ -8,13 +8,15 @@
 import UIKit
 
 protocol SplashRouterProtocol: BaseRouterProtocol {
-  func presentSearchViewController()
+    func presentSearchViewController()
 }
 
 class SplashRouter: BaseRouter, SplashRouterProtocol {
-  func presentSearchViewController() {
-    let searchViewController = SearchViewController()
-    UIApplication.shared.firstWindow()?.rootViewController = UINavigationController(rootViewController: searchViewController)
-    UIApplication.shared.firstWindow()?.makeKeyAndVisible()
-  }
+    func presentSearchViewController() {
+        let searchViewController = SearchViewController()
+        UIApplication.shared.firstWindow()?.rootViewController = UINavigationController(
+            rootViewController: searchViewController
+        )
+        UIApplication.shared.firstWindow()?.makeKeyAndVisible()
+    }
 }

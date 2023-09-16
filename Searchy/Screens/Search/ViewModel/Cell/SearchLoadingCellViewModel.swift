@@ -10,15 +10,15 @@ import UIKit
 protocol SearchLoadingCellViewModelProtocol: BaseCellViewModelProtocol {}
 
 class SearchLoadingCellViewModel: SearchLoadingCellViewModelProtocol {
-  var type: CollectionViewCellTypable
+    var type: CollectionViewCellTypable
 
-  init() {
-    self.type = SearchViewModel.CellTypes.searchLoading
-  }
+    init() {
+        self.type = SearchViewModel.CellTypes.searchLoading
+    }
 
-  func getSize() -> CGSize {
-    let cellWidth: CGFloat = (UIScreen.main.bounds.width - 30)
-    let cellHeight: CGFloat = 68.0
-    return CGSize(width: cellWidth, height: cellHeight)
-  }
+    func getSize() -> CGSize {
+        let cellWidth: CGFloat = (UIScreen.main.bounds.width - 30)
+        let cellHeight: CGFloat = 68.0
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
 }

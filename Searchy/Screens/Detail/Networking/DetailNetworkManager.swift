@@ -8,26 +8,30 @@
 import Alamofire
 
 class DetailNetworkManager {
-  private let basePath = "https://www.omdbapi.com"
+    private let basePath = "https://www.omdbapi.com"
 
-  func getContentDetail(for imdbID: String, completion: @escaping ((DetailModel?) -> Void)) {
-    let parameters: [String: Any] = [ParameterKeys.token.rawValue: Constants.Search.apiKey,
-                                     ParameterKeys.imdbID.rawValue: imdbID,
-                                     ParameterKeys.plotSize.rawValue: "short"]
+    func getContentDetail(for imdbID: String, completion: @escaping ((DetailModel?) -> Void)) {
+        let parameters: [String: Any] = [ParameterKeys.token.rawValue: Constants.Search.apiKey,
+                                         ParameterKeys.imdbID.rawValue: imdbID,
+                                         ParameterKeys.plotSize.rawValue: "short"]
 
-    AF.request(basePath, parameters: parameters, encoding: URLEncoding.queryString).responseDecodable(of: DetailModel.self) { response in
-      switch response.result {
-      case .success(let detailModel): completion(detailModel)
-      case .failure(let error): print(error); completion(nil)
-      }
+        AF.request(
+            basePath,
+            parameters: parameters,
+            encoding: URLEncoding.queryString
+        ).responseDecodable(of: DetailModel.self) { response in
+            switch response.result {
+            case .success(let detailModel): completion(detailModel)
+            case .failure(let error): print(error); completion(nil)
+            }
+        }
     }
-  }
 }
 
 extension DetailNetworkManager {
-  private enum ParameterKeys: String {
-    case token = "apiKey"
-    case imdbID = "i"
-    case plotSize = "plot"
-  }
+    private enum ParameterKeys: String {
+        case token = "apiKey"
+        case imdbID = "i"
+        case plotSize = "plot"
+    }
 }

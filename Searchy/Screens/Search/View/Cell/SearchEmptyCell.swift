@@ -8,18 +8,18 @@
 import UIKit
 
 class SearchEmptyCell: BaseCollectionViewCell {
-  @IBOutlet weak var containerView: UIView!
-  @IBOutlet weak var emptyLabelContainerView: UIView!
-  @IBOutlet weak var emptyLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var emptyLabelContainerView: UIView!
+    @IBOutlet weak var emptyLabel: UILabel!
 
-  override func configureCell(with indexPath: IndexPath, and cellViewModel: BaseCellViewModelProtocol) {
-    super.configureCell(with: indexPath, and: cellViewModel)
+    override func configureCell(with indexPath: IndexPath, and cellViewModel: BaseCellViewModelProtocol) {
+        super.configureCell(with: indexPath, and: cellViewModel)
 
-    guard let cellViewModel = cellViewModel as? SearchEmptyCellViewModelProtocol else { fatalError() }
+        guard let cellViewModel = cellViewModel as? SearchEmptyCellViewModelProtocol else { fatalError() }
 
-    containerView.layer.cornerRadius = 34
-    emptyLabelContainerView.layer.cornerRadius = 22
+        containerView.layer.cornerRadius = 34
+        emptyLabelContainerView.layer.cornerRadius = 22
 
-    emptyLabel.text = cellViewModel.emptyLabelText
-  }
+        emptyLabel.text = cellViewModel.emptyLabelText
+    }
 }
