@@ -8,6 +8,6 @@
 import Foundation
 
 protocol CollectionViewCellTypable {
-  var identifier: String { get }
-  var cellClass: BaseCollectionViewCellProtocol.Type { get }
+    var identifier: String { get }
+    var cellClass: BaseCollectionViewCellProtocol.Type { get }
 }

@@ -8,8 +8,8 @@
 import UIKit
 
 public extension UIApplication {
-  func firstWindow() -> UIWindow? {
-    guard let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return nil }
-    return firstScene.windows.first
-  }
+    func firstWindow() -> UIWindow? {
+        guard let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return nil }
+        return firstScene.windows.first
+    }
 }

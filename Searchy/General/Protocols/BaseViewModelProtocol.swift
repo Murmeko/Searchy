@@ -8,5 +8,5 @@
 import UIKit
 
 protocol BaseViewModelProtocol {
-  func viewIsReady()
+    func viewIsReady()
 }
